@@ -1,0 +1,56 @@
+var Mapa = React.createClass({
+    getInitialState: function(){
+        return {
+            map_height: 600,
+            map_width: 600,
+            lat_cen: 0,
+            lon_cen: 0,
+            zoom: 0
+        };
+    },
+    render: function(){
+        return(
+                <div id = "mapa"></div>
+        );
+    },
+    componentDidMount: function(){
+        var mH = this.state.map_height;
+        var mW = this.state.map_width;
+        var cook = {
+            "type": "LineString",
+            "coordinates": [
+                [-4.1397, 50.3706],
+                [-43.2436, -22.9083],
+                [-67.2717, -55.9797],
+                [-149.4500, -17.6667],
+                [172.1936, -41.4395],
+                [151.1667, -34],
+                [147.70, -18.3],
+                [106.7, -6],
+                [18.4719, -34.3],
+                [-5,-15],
+                [-25.6, 37.7],
+                [-4.1397, 50.3706]
+            ]
+        };
+        var project = d3.geo.mercator()
+            .scale(75)
+            .translate([mH/2, mW/2])
+            .rotate([-180, 0]);
+        var path = d3.geo.path()
+            .projection(project);
+        var svg = d3.select("#mapa")
+            .append("svg")
+            .attr("height", mH+"px")
+            .attr("width", mW+"px")
+            .attr("fill","none")
+            .attr("stroke","red");
+        svg.selectAll(".geojson").data([cook])
+            .enter()
+            .append("path")
+            .attr("class","geojson")
+            .attr("d",path);
+    }
+});
+
+module.exports = Mapa;

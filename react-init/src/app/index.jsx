@@ -1,0 +1,11 @@
+import React from 'react';
+window.React = React;
+window.d3 = require('d3');
+window.d3.geo.tile = require('d3.geo.tile');
+window.topojson = require('topojson');
+var MapContainer = require('../component/mapcontainer.jsx');
+//var WMapa = require('../component/wmapa.jsx');
+//var Mapa2 = require('../component/mapa2.jsx');
+React.render(<MapContainer/>, document.getElementById('contenedor'));
+//React.render(<WMapa/>, document.getElementById('contenedor2'));
+//React.render(<Mapa2/>, document.getElementById('contenedor3'));

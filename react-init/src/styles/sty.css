@@ -1,0 +1,7 @@
+path:hover{
+    fill: red;
+}
+#wmapa{
+    display: flex;
+    flex-wrap: wrap;
+}
